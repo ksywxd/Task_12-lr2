@@ -34,7 +34,7 @@ void solveType2(double a, double b, double c) {
 
     // az^2 + bz + (c-2a) = 0
     double z1, z2, x1, x2, x3, x4;
-    double D = b * b - 4 * a * c + 8 * a * a;
+    double D = b * b - 4 * a * (c - 2 * a);
     if (D < 0) {
         std::cout << "Нет действительных корней.\n";
         return;
