@@ -18,10 +18,12 @@ int kvad(double a, double b, double c, double& x1, double& x2) {
     if (D < 0) return 0;
     else if (D == 0) {
         x1 = -b / (2 * a);
+        return 1;
     }
     else {
         x1 = (-b + cor(D)) / (2 * a);
         x2 = (-b - cor(D)) / (2 * a);
+        return 2;
     }
 }
 
@@ -33,26 +35,33 @@ void solveType2(double a, double b, double c) {
     }
 
     // az^2 + bz + (c-2a) = 0
-    double z1, z2, x1, x2, x3, x4;
-    double D = b * b - 4 * a * (c - 2 * a);
-    if (D < 0) {
+    double z1, z2;
+    int zRoots = kvad(a, b, c - 2 * a, z1, z2);
+
+    if (zRoots == 0) {
         std::cout << "Нет действительных корней.\n";
         return;
     }
-    else if (D == 0) {
-        z1 = -b / (2 * a);
-        kvad(1, -z1, 1, x1, x2);
-        std::cout << x1 << " " << x2;
+
+    double x1, x2, x3, x4;
+    int count = 0;
+
+    if (zRoots >= 1) {
+        int roots1 = kvad(1, -z1, 1, x1, x2);
+        if (roots1 == 1) std::cout << "x = " << x1 << std::endl;
+        if (roots1 == 2) std::cout << "x = " << x1 << ", " << x2 << std::endl;
+        count += roots1;
     }
-    else {
-        z1 = (-b + cor(D)) / (2 * a);
-        z2 = (-b - cor(D)) / (2 * a);
-        kvad(1, -z1, 1, x1, x2);
-        kvad(1, -z2, 1, x3, x4);
-        std::cout << x1 << " " << x2 << " " << x3 << " " << x4;
+    if (zRoots == 2) {
+        int roots2 = kvad(1, -z2, 1, x3, x4);
+        if (roots2 == 1) std::cout << "x = " << x3 << std::endl;
+        if (roots2 == 2) std::cout << "x = " << x3 << ", " << x4 << std::endl;
+        count += roots2;
     }
 
+    if (count == 0) std::cout << "Нет действительных корней.\n";
 }
+
 
 int main() {
     setlocale(LC_ALL, "RU");
