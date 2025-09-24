@@ -15,26 +15,46 @@ double cor(double x) {
 
 void kvad(double a, double b, double c, double& x1, double& x2) {
     double D = b * b - 4 * a * c;
-    if (D < 0) {
-        std::cout << "Нет действительных корней.\n";
-        return;
-    }
+    if (D < 0) return;
     else if (D == 0) {
         x1 = -b / (2 * a);
     }
     else {
-        double y1 = (-b + cor(D)) / (2 * a);
-        double y2 = (-b - cor(D)) / (2 * a);
+        x1 = (-b + cor(D)) / (2 * a);
+        x2 = (-b - cor(D)) / (2 * a);
     }
 }
 
 void solveType2(double a, double b, double c) {
-    std::cout << "\nТип 2: Симметричное уравнение\n";
+    std::cout << "Тип 2: Симметричное уравнение\n";
     if (a == 0) {
         std::cout << "Это не симметричное уравнение.\n";
         return;
     }
 
     // az^2 + bz + (c-2a) = 0
+    double z1, z2, x1, x2, x3, x4;
+    double D = b * b - 4 * a * c + 8 * a * a;
+    if (D < 0) {
+        std::cout << "Нет действительных корней.\n";
+        return;
+    }
+    else if (D == 0) {
+        z1 = -b / (2 * a);
+    }
+    else {
+        z1 = (-b + cor(D)) / (2 * a);
+        z2 = (-b - cor(D)) / (2 * a);
+    }
+    kvad(1, -z1, 1, x1, x2);
+    kvad(1, -z2, 1, x3, x4);
+    std::cout << x1 << " " << x2 << " " << x3 << " " << x4;
+}
 
-    
+int main() {
+    setlocale(LC_ALL, "RU");
+    double a, b, c;
+    std::cout << "Введите a, b, c: ";
+    std::cin >> a >> b >> c;
+    solveType2(a, b, c);
+}
