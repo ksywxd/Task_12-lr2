@@ -13,9 +13,9 @@ double cor(double x) {
     return mid;
 }
 
-void kvad(double a, double b, double c, double& x1, double& x2) {
+int kvad(double a, double b, double c, double& x1, double& x2) {
     double D = b * b - 4 * a * c;
-    if (D < 0) return;
+    if (D < 0) return 0;
     else if (D == 0) {
         x1 = -b / (2 * a);
     }
