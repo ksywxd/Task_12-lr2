@@ -26,30 +26,30 @@ void solveType1(double a, double b, double c) {
     if (D < 0) {
         std::cout << "Нет действительных корней.\n";
     }
-        double t1 = (-b + cor(D)) / (2 * a);
-        double t2 = (-b - cor(D)) / (2 * a);
+    double t1 = (-b + cor(D)) / (2 * a);
+    double t2 = (-b - cor(D)) / (2 * a);
 
-        int count = 0;
-        if (t1 >= 0) {
-            double x1 = cor(t1);
-            double x2 = -x1;
-            std::cout << "x = " << x1 << " " << x2 << " ";
-            count += 2;
-        }
-        if (t2 >= 0 && t2 != t1) {
-            double x3 = cor(t2);
-            double x4 = -x3;
-            std::cout << x3 << " " << x4 << "\n";
-            count += 2;
-        }
-        if (count == 0) std::cout << "Нет действительных корней.\n";
+    int count = 0;
+    if (t1 >= 0) {
+        double x1 = cor(t1);
+        double x2 = -x1;
+        std::cout << "x = " << x1 << " " << x2 << " ";
+        count += 2;
     }
+    if (t2 >= 0 && t2 != t1) {
+        double x3 = cor(t2);
+        double x4 = -x3;
+        std::cout << x3 << " " << x4 << "\n";
+        count += 2;
+    }
+    if (count == 0) std::cout << "Нет действительных корней.\n";
+}
 
-    int main() {
-        setlocale(LC_ALL, "RU");
-        double a, b, c;
-        std::cout << "Введите a, b, c: ";
-        std::cin >> a >> b >> c;
-        solveType1(a, b, c);
-        return 0;
-    }
+int main() {
+    setlocale(LC_ALL, "RU");
+    double a, b, c;
+    std::cout << "Введите a, b, c: ";
+    std::cin >> a >> b >> c;
+    solveType1(a, b, c);
+    return 0;
+}
