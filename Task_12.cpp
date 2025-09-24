@@ -25,6 +25,7 @@ void solveType1(double a, double b, double c) {
     double D = b * b - 4 * a * c;
     if (D < 0) {
         std::cout << "Нет действительных корней.\n";
+        return;
     }
     double t1 = (-b + cor(D)) / (2 * a);
     double t2 = (-b - cor(D)) / (2 * a);
