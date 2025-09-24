@@ -41,14 +41,17 @@ void solveType2(double a, double b, double c) {
     }
     else if (D == 0) {
         z1 = -b / (2 * a);
+        kvad(1, -z1, 1, x1, x2);
+        std::cout << x1 << " " << x2;
     }
     else {
         z1 = (-b + cor(D)) / (2 * a);
         z2 = (-b - cor(D)) / (2 * a);
+        kvad(1, -z1, 1, x1, x2);
+        kvad(1, -z2, 1, x3, x4);
+        std::cout << x1 << " " << x2 << " " << x3 << " " << x4;
     }
-    kvad(1, -z1, 1, x1, x2);
-    kvad(1, -z2, 1, x3, x4);
-    std::cout << x1 << " " << x2 << " " << x3 << " " << x4;
+
 }
 
 int main() {
